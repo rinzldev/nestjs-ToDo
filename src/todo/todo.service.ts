@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { Todo } from './entities/todo.entity';
+import { todo } from 'node:test';
 
 @Injectable()
 export class TodoService {
@@ -47,6 +48,10 @@ export class TodoService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} todo`;
+    //Para verificar si el id que quiero eliminar existe.
+    this.findOne(id);
+
+    //Para eliminar el elemento del arreglo y devolver el nuevo.
+    this.todos = this.todos.filter((todo) => todo.id !== id);
   }
 }
